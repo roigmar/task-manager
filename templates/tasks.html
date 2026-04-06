@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="tasks-container">
+    <header>
+        <h1>Hola, {{ username }}</h1>
+        <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+    </header>
+    <p>Acá van a aparecer tus tareas — las agregamos en la semana 3.</p>
+</div>
+{% endblock %}
