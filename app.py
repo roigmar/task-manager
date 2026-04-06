@@ -65,8 +65,79 @@ def logout():
 def tasks():
     if 'user_id' not in session:
         return redirect(url_for('login'))
-    return render_template('tasks.html', username=session['username'])
+
+    conn = get_connection()
+    user_tasks = conn.execute(
+        'SELECT * FROM tasks WHERE user_id = ? ORDER BY created_at DESC',
+        (session['user_id'],)
+    ).fetchall()
+    conn.close()
+
+    return render_template('tasks.html', username=session['username'], tasks=user_tasks)
+
+
+@app.route('/tasks/new', methods=['GET', 'POST'])
+def new_task():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        title = request.form['title']
+        description = request.form['description']
+        priority = request.form['priority']
+
+        conn = get_connection()
+        conn.execute(
+            'INSERT INTO tasks (user_id, title, description, priority) VALUES (?, ?, ?, ?)',
+            (session['user_id'], title, description, priority)
+        )
+        conn.commit()
+        conn.close()
+        flash('Tarea creada.', 'success')
+        return redirect(url_for('tasks'))
+
+    return render_template('new_task.html')
+
+
+@app.route('/tasks/<int:task_id>/complete', methods=['POST'])
+def complete_task(task_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = get_connection()
+    task = conn.execute(
+        'SELECT * FROM tasks WHERE id = ? AND user_id = ?',
+        (task_id, session['user_id'])
+    ).fetchone()
+
+    if task:
+        new_status = 0 if task['completed'] else 1
+        conn.execute(
+            'UPDATE tasks SET completed = ? WHERE id = ?',
+            (new_status, task_id)
+        )
+        conn.commit()
+    conn.close()
+    return redirect(url_for('tasks'))
+
+
+@app.route('/tasks/<int:task_id>/delete', methods=['POST'])
+def delete_task(task_id):
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+
+    conn = get_connection()
+    conn.execute(
+        'DELETE FROM tasks WHERE id = ? AND user_id = ?',
+        (task_id, session['user_id'])
+    )
+    conn.commit()
+    conn.close()
+    flash('Tarea eliminada.', 'success')
+    return redirect(url_for('tasks'))
+
 
 if __name__ == '__main__':
     init_db()
     app.run(debug=True)
+

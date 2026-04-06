@@ -4,8 +4,38 @@
 <div class="tasks-container">
     <header>
         <h1>Hola, {{ username }}</h1>
+        <a href="{{ url_for('new_task') }}">+ Nueva tarea</a>
         <a href="{{ url_for('logout') }}">Cerrar sesión</a>
     </header>
-    <p>Acá van a aparecer tus tareas — las agregamos en la semana 3.</p>
+
+    {% if tasks %}
+        <ul class="task-list">
+            {% for task in tasks %}
+            <li class="task-item {% if task.completed %}completed{% endif %}">
+                <div class="task-info">
+                    <span class="task-title">{{ task.title }}</span>
+                    {% if task.description %}
+                        <span class="task-desc">{{ task.description }}</span>
+                    {% endif %}
+                    <span class="task-priority priority-{{ task.priority }}">{{ task.priority }}</span>
+                </div>
+                <div class="task-actions">
+                    <form method="POST" action="{{ url_for('complete_task', task_id=task.id) }}">
+                        <button type="submit">
+                            {% if task.completed %}Deshacer{% else %}Completar{% endif %}
+                        </button>
+                    </form>
+                    <form method="POST" action="{{ url_for('delete_task', task_id=task.id) }}">
+                        <button type="submit" onclick="return confirm('¿Eliminás esta tarea?')">
+                            Eliminar
+                        </button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="empty-state">No tenés tareas todavía. ¡Creá una!</p>
+    {% endif %}
 </div>
 {% endblock %}

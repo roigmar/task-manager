@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <h1>Nueva tarea</h1>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Título" required>
+        <textarea name="description" placeholder="Descripción (opcional)" rows="3"></textarea>
+        <select name="priority">
+            <option value="baja">Baja</option>
+            <option value="media" selected>Media</option>
+            <option value="alta">Alta</option>
+        </select>
+        <button type="submit">Crear tarea</button>
+    </form>
+    <a href="{{ url_for('tasks') }}">Volver</a>
+</div>
+{% endblock %}
