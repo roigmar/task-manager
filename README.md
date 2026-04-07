@@ -18,11 +18,14 @@ Principales características:
 Puedes ver la aplicación en funcionamiento aquí: [https://roigmar.github.io/task-manager/](https://roigmar.github.io/task-manager/)
 
 ## Capturas de pantalla
-
-> - `templates/screenshots/login.png`
-> - `templates/screenshots/tasks.png`
-> - `templates/screenshots/new_task.png`
-> - `templates/screenshots/register.png`
+## Login
+![Login](templates/screenshots/login.png)
+## Tasks
+![Tasks](templates/screenshots/tasks.png)
+## New Task
+![New Task](templates/screenshots/new_task.png)
+## Registro
+![Register](templates/screenshots/register.png)
 
 
 ## Requerimientos
