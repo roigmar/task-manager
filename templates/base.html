@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -20,5 +23,20 @@
     <main>
         {% block content %}{% endblock %}
     </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const flashMessages = document.querySelectorAll('.flash');
+            if (!flashMessages.length) return;
+
+            setTimeout(() => {
+                flashMessages.forEach((flash) => {
+                    flash.style.transition = 'opacity 0.35s ease, transform 0.35s ease';
+                    flash.style.opacity = '0';
+                    flash.style.transform = 'translateY(-10px)';
+                    setTimeout(() => flash.remove(), 350);
+                });
+            }, 3000);
+        });
+    </script>
 </body>
 </html>

@@ -68,7 +68,7 @@ def tasks():
 
     conn = get_connection()
     user_tasks = conn.execute(
-        'SELECT * FROM tasks WHERE user_id = ? ORDER BY created_at DESC',
+        'SELECT * FROM tasks WHERE user_id = ? ORDER BY completed ASC, created_at DESC',
         (session['user_id'],)
     ).fetchall()
     conn.close()
