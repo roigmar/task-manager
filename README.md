@@ -13,6 +13,10 @@ Principales características:
 - Tareas completadas se muestran al final de la lista
 - Diseño móvil-friendly con una paleta de colores moderna
 
+## Demo
+
+Puedes ver la aplicación en funcionamiento aquí: [https://roigmar.github.io/task-manager/](https://roigmar.github.io/task-manager/)
+
 ## Capturas de pantalla
 
 > - `templates/screenshots/login.png`
