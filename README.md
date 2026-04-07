@@ -15,7 +15,7 @@ Principales características:
 
 ## Demo
 
-Puedes ver la aplicación en funcionamiento aquí: [https://roigmar.github.io/task-manager/](https://roigmar.github.io/task-manager/)
+*Deploy en progreso — próximamente disponible en Render.*
 
 ## Capturas de pantalla
 ## Login
