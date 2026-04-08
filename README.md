@@ -13,9 +13,9 @@ Principales características:
 - Tareas completadas se muestran al final de la lista
 - Diseño móvil-friendly con una paleta de colores moderna
 
-## Demo
+Demo
 
-*Deploy en progreso — próximamente disponible en Render.*
+[https://task-manager-667y.onrender.com](https://task-manager-667y.onrender.com)
 
 ## Capturas de pantalla
 ## Login
