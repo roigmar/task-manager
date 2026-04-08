@@ -19,13 +19,13 @@ Principales características:
 
 ## Capturas de pantalla
 ## Login
-![Login](templates/screenshots/login.png)
+![Login](static/screenshots/login.png)
 ## Tasks
-![Tasks](templates/screenshots/tasks.png)
+![Tasks](static/screenshots/tasks.png)
 ## New Task
-![New Task](templates/screenshots/new_task.png)
+![New Task](static/screenshots/new_task.png)
 ## Registro
-![Register](templates/screenshots/register.png)
+![Register](static/screenshots/register.png)
 
 
 ## Requerimientos
